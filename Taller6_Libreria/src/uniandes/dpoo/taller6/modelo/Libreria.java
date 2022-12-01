@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Esta clase agrupa toda la información de una librería: las categorías que se
- * usan para clasificar los libros, y del catálogo de libros.
+ * Esta clase agrupa toda la informaciï¿½n de una librerï¿½a: las categorï¿½as que se
+ * usan para clasificar los libros, y del catï¿½logo de libros.
  * 
- * Adicionalmente esta clase es capaz de calcular y hacer búsquedas sobre las
- * categorías y sobre el catálogo de libros.
+ * Adicionalmente esta clase es capaz de calcular y hacer bï¿½squedas sobre las
+ * categorï¿½as y sobre el catï¿½logo de libros.
  */
 public class Libreria
 {
@@ -22,28 +22,42 @@ public class Libreria
 	// ************************************************************************
 
 	/**
-	 * El arreglo con las categorías que hay en la librería
+	 * El arreglo con las categorï¿½as que hay en la librerï¿½a
 	 */
 	private Categoria[] categorias;
 
 	/**
-	 * Una lista con los libros disponibles en la librería
+	 * Una lista con los libros disponibles en la librerï¿½a
 	 */
 	private ArrayList<Libro> catalogo;
+	
+	/**
+	 * Una lista con las categorias creadas tipo String
+	 */
+	private ArrayList<String> creadas = new ArrayList<String>();
 
+	/*
+	 * Una lista de categorias como objetos creados
+	 */
+	private ArrayList<Categoria> creadasObjeto = new ArrayList<Categoria>();
+	
+	boolean borraronDatos =false;
+	
+
+	
 	// ************************************************************************
 	// Constructores
 	// ************************************************************************
 
 	/**
-	 * Construye una nueva librería a partir de la información de los parámetros y
-	 * de la información contenida en los archivos.
+	 * Construye una nueva librerï¿½a a partir de la informaciï¿½n de los parï¿½metros y
+	 * de la informaciï¿½n contenida en los archivos.
 	 * 
 	 * @param nombreArchivoCategorias El nombre del archivo CSV que tiene la
-	 *                                información sobre las categorías de libros
+	 *                                informaciï¿½n sobre las categorï¿½as de libros
 	 * @param nombreArchivoLibros     El nombre del archivo CSV que tiene la
-	 *                                información sobre los libros
-	 * @throws IOException Lanza esta excepción si hay algún problema leyendo un
+	 *                                informaciï¿½n sobre los libros
+	 * @throws IOException Lanza esta excepciï¿½n si hay algï¿½n problema leyendo un
 	 *                     archivo
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
@@ -56,8 +70,15 @@ public class Libreria
 	// MÃ©todos para consultar los atributos
 	// ************************************************************************
 
+	/*
+	 * Retorna las categorias creadas
+	 * 
+	 */
+	public ArrayList<String> darCreadas() { 
+		return this.creadas;
+	}
 	/**
-	 * Retorna las categorías de la librería
+	 * Retorna las categorï¿½as de la librerï¿½a
 	 * 
 	 * @return categorias
 	 */
@@ -67,7 +88,7 @@ public class Libreria
 	}
 
 	/**
-	 * Retorna el catálogo completo de libros de la librería
+	 * Retorna el catï¿½logo completo de libros de la librerï¿½a
 	 * 
 	 * @return catalogo
 	 */
@@ -81,12 +102,12 @@ public class Libreria
 	// ************************************************************************
 
 	/**
-	 * Carga la información sobre las categorías disponibles a partir de un archivo
+	 * Carga la informaciï¿½n sobre las categorï¿½as disponibles a partir de un archivo
 	 * 
 	 * @param nombreArchivoCategorias El nombre del archivo CSV que contiene la
-	 *                                información de las categorías
-	 * @return Un arreglo con las categorías que se encontraron en el archivo
-	 * @throws IOException Se lanza esta excepción si hay algún problema leyendo del
+	 *                                informaciï¿½n de las categorï¿½as
+	 * @return Un arreglo con las categorï¿½as que se encontraron en el archivo
+	 * @throws IOException Se lanza esta excepciï¿½n si hay algï¿½n problema leyendo del
 	 *                     archivo
 	 */
 	private Categoria[] cargarCategorias(String nombreArchivoCategorias) throws IOException
@@ -94,7 +115,7 @@ public class Libreria
 		ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 
 		BufferedReader br = new BufferedReader(new FileReader(nombreArchivoCategorias));
-		String linea = br.readLine(); // Ignorar la primera línea porque tiene los títulos
+		String linea = br.readLine(); // Ignorar la primera lï¿½nea porque tiene los tï¿½tulos
 
 		linea = br.readLine();
 		while (linea != null)
@@ -103,7 +124,7 @@ public class Libreria
 			String nombreCat = partes[0];
 			boolean esFiccion = partes[1].equals("true");
 
-			// Crear una nueva categoría y agregarla a la lista
+			// Crear una nueva categorï¿½a y agregarla a la lista
 			listaCategorias.add(new Categoria(nombreCat, esFiccion));
 
 			linea = br.readLine();
@@ -111,7 +132,7 @@ public class Libreria
 
 		br.close();
 
-		// Convertir la lista de categorías a un arreglo
+		// Convertir la lista de categorï¿½as a un arreglo
 		Categoria[] arregloCategorias = new Categoria[listaCategorias.size()];
 		for (int i = 0; i < listaCategorias.size(); i++)
 		{
@@ -122,15 +143,15 @@ public class Libreria
 	}
 
 	/**
-	 * Carga la información sobre los libros disponibles en la librería.
+	 * Carga la informaciï¿½n sobre los libros disponibles en la librerï¿½a.
 	 * 
-	 * Se deben haber cargado antes las categorías e inicializado el atributo
+	 * Se deben haber cargado antes las categorï¿½as e inicializado el atributo
 	 * 'categorias'.
 	 * 
 	 * @param nombreArchivoLibros El nombre del archivo CSV que contiene la
-	 *                            información de los libros
+	 *                            informaciï¿½n de los libros
 	 * @return Una lista con los libros que se cargaron a partir del archivo
-	 * @throws IOException Se lanza esta excepción si hay algún problema leyendo del
+	 * @throws IOException Se lanza esta excepciï¿½n si hay algï¿½n problema leyendo del
 	 *                     archivo
 	 */
 	private ArrayList<Libro> cargarCatalogo(String nombreArchivoLibros) throws IOException
@@ -138,7 +159,7 @@ public class Libreria
 		ArrayList<Libro> libros = new ArrayList<Libro>();
 
 		BufferedReader br = new BufferedReader(new FileReader(nombreArchivoLibros));
-		String linea = br.readLine(); // Ignorar la primera línea porque tiene los títulos:
+		String linea = br.readLine(); // Ignorar la primera lï¿½nea porque tiene los tï¿½tulos:
 										// Titulo,Autor,Calificacion,Categoria,Portada,Ancho,Alto
 
 		linea = br.readLine();
@@ -148,11 +169,35 @@ public class Libreria
 			String elTitulo = partes[0];
 			String elAutor = partes[1];
 			double laCalificacion = Double.parseDouble(partes[2]);
-			String nombreCategoria = partes[3];
-			Categoria laCategoria = buscarCategoria(nombreCategoria);
+			String nombreCategoria = partes[3]; // da categoria
+			Categoria laCategoria; // Categoria como objeto
+			
+			try {
+				laCategoria = buscarCategoria(nombreCategoria);
+			} catch (Exception e) {
+				creadas.add(nombreCategoria);
+				laCategoria = new Categoria(nombreCategoria, true);  //excepciones
+				creadasObjeto.add(laCategoria);
+				
+				Categoria[] categoriasnueva = new Categoria[this.categorias.length + 1];
+				int i = 0;
+				for (Categoria categoria : this.categorias) {
+					categoriasnueva[i] = categoria;
+					i++;
+				}
+			
+				categoriasnueva[i] = laCategoria;
+					
+				
+				this.categorias = categoriasnueva;
+				
+			}
+			
 			String archivoPortada = partes[4];
-			int ancho = Integer.parseInt(partes[5]);
-			int alto = Integer.parseInt(partes[6]);
+			String ancho1 = partes[5].replace("\"", "");  //cambias ancho alto 
+			String alto1= partes[6].replace("\"", "");
+			int ancho = Integer.parseInt(ancho1);
+			int alto = Integer.parseInt(alto1);
 
 			// Crear un nuevo libro
 			Libro nuevo = new Libro(elTitulo, elAutor, laCalificacion, laCategoria);
@@ -174,10 +219,10 @@ public class Libreria
 	}
 
 	/**
-	 * Busca una categoría a partir de su nombre
+	 * Busca una categorï¿½a a partir de su nombre
 	 * 
-	 * @param nombreCategoria El nombre de la categoría buscada
-	 * @return La categoría que tiene el nombre dado
+	 * @param nombreCategoria El nombre de la categorï¿½a buscada
+	 * @return La categorï¿½a que tiene el nombre dado
 	 */
 	private Categoria buscarCategoria(String nombreCategoria)
 	{
@@ -187,6 +232,13 @@ public class Libreria
 			if (categorias[i].darNombre().equals(nombreCategoria))
 				laCategoria = categorias[i];
 		}
+		
+		if (laCategoria == null)
+		{
+			
+			throw new Exception ("No se encontrï¿½ la categorï¿½a del libro"); // no se encontro categoria
+		}
+			
 		return laCategoria;
 	}
 
@@ -204,11 +256,11 @@ public class Libreria
 	}
 
 	/**
-	 * Retorna una lista con los libros que pertenecen a la categoría indicada en el
-	 * parámetro
+	 * Retorna una lista con los libros que pertenecen a la categorï¿½a indicada en el
+	 * parï¿½metro
 	 * 
-	 * @param nombreCategoria El nombre de la categoría de interÃ©s
-	 * @return Una lista donde todos los libros pertenecen a la categoría indicada
+	 * @param nombreCategoria El nombre de la categorï¿½a de interÃ©s
+	 * @return Una lista donde todos los libros pertenecen a la categorï¿½a indicada
 	 */
 	public ArrayList<Libro> darLibros(String nombreCategoria)
 	{
@@ -229,11 +281,11 @@ public class Libreria
 	}
 
 	/**
-	 * Busca un libro a partir de su título
+	 * Busca un libro a partir de su tï¿½tulo
 	 * 
-	 * @param tituloLibro Título del libro buscado
-	 * @return Retorna un libro con el título indicado o null si no se encontró un
-	 *         libro con ese título
+	 * @param tituloLibro Tï¿½tulo del libro buscado
+	 * @return Retorna un libro con el tï¿½tulo indicado o null si no se encontrï¿½ un
+	 *         libro con ese tï¿½tulo
 	 */
 	public Libro buscarLibro(String tituloLibro)
 	{
@@ -250,13 +302,13 @@ public class Libreria
 	}
 
 	/**
-	 * Busca en la librería los libros escritos por el autor indicado.
+	 * Busca en la librerï¿½a los libros escritos por el autor indicado.
 	 * 
-	 * El nombre del autor puede estar incompleto, y la búsqueda no debe tener en
-	 * cuenta mayúsculas y minúsculas. Por ejemplo, si se buscara por "ulio v"
-	 * deberían encontrarse los libros donde el autor sea "Julio Verne".
+	 * El nombre del autor puede estar incompleto, y la bï¿½squeda no debe tener en
+	 * cuenta mayï¿½sculas y minï¿½sculas. Por ejemplo, si se buscara por "ulio v"
+	 * deberï¿½an encontrarse los libros donde el autor sea "Julio Verne".
 	 * 
-	 * @param cadenaAutor La cadena que se usará para consultar el autor. No
+	 * @param cadenaAutor La cadena que se usarï¿½ para consultar el autor. No
 	 *                    necesariamente corresponde al nombre completo de un autor.
 	 * @return Una lista con todos los libros cuyo autor coincida con la cadena
 	 *         indicada
@@ -278,15 +330,15 @@ public class Libreria
 	}
 
 	/**
-	 * Busca en quÃ© categorías hay libros del autor indicado.
+	 * Busca en quÃ© categorï¿½as hay libros del autor indicado.
 	 * 
 	 * Este mÃ©todo busca libros cuyo autor coincida exactamente con el valor
-	 * indicado en el parámetro nombreAutor.
+	 * indicado en el parï¿½metro nombreAutor.
 	 * 
 	 * @param nombreAutor El nombre del autor
-	 * @return Una lista con las categorías en las cuales hay al menos un libro del
-	 *         autor indicado. Si no hay un libro del autor en ninguna categoría,
-	 *         retorna una lista vacía.
+	 * @return Una lista con las categorï¿½as en las cuales hay al menos un libro del
+	 *         autor indicado. Si no hay un libro del autor en ninguna categorï¿½a,
+	 *         retorna una lista vacï¿½a.
 	 */
 	public ArrayList<Categoria> buscarCategoriasAutor(String nombreAutor)
 	{
@@ -304,10 +356,10 @@ public class Libreria
 	}
 
 	/**
-	 * Calcula la calificación promedio calculada entre todos los libros del
-	 * catálogo
+	 * Calcula la calificaciï¿½n promedio calculada entre todos los libros del
+	 * catï¿½logo
 	 * 
-	 * @return Calificación promedio del catálogo
+	 * @return Calificaciï¿½n promedio del catï¿½logo
 	 */
 	public double calificacionPromedio()
 	{
@@ -322,10 +374,10 @@ public class Libreria
 	}
 
 	/**
-	 * Busca cuál es la categoría que tiene más libros
+	 * Busca cuï¿½l es la categorï¿½a que tiene mï¿½s libros
 	 * 
-	 * @return La categoría con más libros. Si hay empate, retorna cualquiera de las
-	 *         que estÃ©n empatadas en el primer lugar. Si no hay ningún libro,
+	 * @return La categorï¿½a con mï¿½s libros. Si hay empate, retorna cualquiera de las
+	 *         que estÃ©n empatadas en el primer lugar. Si no hay ningï¿½n libro,
 	 *         retorna null.
 	 */
 	public Categoria categoriaConMasLibros()
@@ -346,10 +398,10 @@ public class Libreria
 	}
 
 	/**
-	 * Busca cuál es la categoría cuyos libros tienen el mayor promedio en su
-	 * calificación
+	 * Busca cuï¿½l es la categorï¿½a cuyos libros tienen el mayor promedio en su
+	 * calificaciï¿½n
 	 * 
-	 * @return Categoría con los mejores libros
+	 * @return Categorï¿½a con los mejores libros
 	 */
 	public Categoria categoriaConMejoresLibros()
 	{
@@ -370,7 +422,7 @@ public class Libreria
 	}
 
 	/**
-	 * Cuenta cuántos libros del catálogo no tienen portada
+	 * Cuenta cuï¿½ntos libros del catï¿½logo no tienen portada
 	 * 
 	 * @return Cantidad de libros sin portada
 	 */
@@ -388,10 +440,10 @@ public class Libreria
 	}
 
 	/**
-	 * Consulta si hay algún autor que tenga un libro en más de una categoría
+	 * Consulta si hay algï¿½n autor que tenga un libro en mï¿½s de una categorï¿½a
 	 * 
-	 * @return Retorna true si hay algún autor que tenga al menos un libro en dos
-	 *         categorías diferentes. Retorna false en caso contrario.
+	 * @return Retorna true si hay algï¿½n autor que tenga al menos un libro en dos
+	 *         categorï¿½as diferentes. Retorna false en caso contrario.
 	 */
 	public boolean hayAutorEnVariasCategorias()
 	{
