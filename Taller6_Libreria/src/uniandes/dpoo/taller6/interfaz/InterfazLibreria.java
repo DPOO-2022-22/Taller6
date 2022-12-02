@@ -190,10 +190,10 @@ public class InterfazLibreria extends JFrame {
 		System.out.println("bien");
 
 		try {
-			String viejisimo = JOptionPane.showInputDialog(this, "Escriba el nombre de la categoria a renombrar",
+			String viejo= JOptionPane.showInputDialog(this, "Escriba el nombre de la categoria a renombrar",
 					"Categoria a renombrar");
-			String nuevisimo = JOptionPane.showInputDialog(this, "Escriba el nombre nuevo", "Renombrar");
-			libreria.renombrarCategoria(viejisimo, nuevisimo);
+			String nuevo = JOptionPane.showInputDialog(this, "Escriba el nombre nuevo", "Renombrar");
+			libreria.renombrarCategoria(viejo, nuevo);
 			JOptionPane.showMessageDialog(this, "Se renombro correctamente la categoria", "Renombrar Exitoso",
 					JOptionPane.INFORMATION_MESSAGE);
 
@@ -204,6 +204,15 @@ public class InterfazLibreria extends JFrame {
 		}
 
 	}
+
+	// metodo borrar libros 
+
+	public void borrarLibro(){
+
+
+
+	}
+
 
 	/*
 	 * Metodo Categorias faltantes

@@ -42,6 +42,8 @@ public class PanelBotones extends JPanel implements ActionListener {
 	// Cambiar nombre
 	private final static String CAMBIAR_NOMBRE_CATEGORIA = "CambiarNombreCategoria";
 
+	private final static String BORRAR_LIBRO = "BorrarLibros";
+
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
@@ -84,6 +86,12 @@ public class PanelBotones extends JPanel implements ActionListener {
 		botonCambiarNombreCategoria.addActionListener(this);
 		this.add(botonCambiarNombreCategoria);
 
+		//borrar libros
+		JButton botonBorrarLibro = new JButton("Borrar libro");
+		botonBorrarLibro.setToolTipText("Eliminar libros");
+		botonBorrarLibro.setActionCommand(BORRAR_LIBRO);
+		botonBorrarLibro.addActionListener(this);
+		this.add(botonBorrarLibro);
 	}
 
 	// ************************************************************************
@@ -149,6 +157,9 @@ public class PanelBotones extends JPanel implements ActionListener {
 
 			ventana.renombrarCategoria();
 
+		} else if (BORRAR_LIBRO.equals(comando)){
+
+			ventana.borrarLibro();
 		}
 	}
 
