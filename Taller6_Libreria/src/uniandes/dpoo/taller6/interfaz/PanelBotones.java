@@ -3,6 +3,7 @@ package uniandes.dpoo.taller6.interfaz;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,8 +18,7 @@ import javax.swing.border.TitledBorder;
  * botones.
  */
 @SuppressWarnings("serial")
-public class PanelBotones extends JPanel implements ActionListener
-{
+public class PanelBotones extends JPanel implements ActionListener {
 	// ************************************************************************
 	// Constantes
 	// ************************************************************************
@@ -57,20 +57,22 @@ public class PanelBotones extends JPanel implements ActionListener
 	 * 
 	 * @param interfazLibreria La ventana dentro de la que se encuentra el panel
 	 */
-	public PanelBotones(InterfazLibreria interfazLibreria)
-	{
+	public PanelBotones(InterfazLibreria interfazLibreria) {
 		ventana = interfazLibreria;
 		setBorder(new TitledBorder("Acciones"));
 
 		setLayout(new FlowLayout());
-		agregarBoton(BUSCAR_LIBRO, "Buscar libro con titulo", "./data/iconos/libros.png");
-		agregarBoton(BUSCAR_LIBROS_AUTOR, "Buscar libros de un autor", "./data/iconos/autor2.png");
-		agregarBoton(BUSCAR_CATEGORIA_AUTOR, "Buscar categorías autor", "./data/iconos/contenido.png");
-		agregarBoton(CALIFICACION, "Buscar libro con titulo", "./data/iconos/estrella.png");
-		agregarBoton(CATEGORIA_MAS_LIBROS, "Buscar libro con titulo", "./data/iconos/libreria.png");
-		agregarBoton(CONTAR_SIN_PORTADA, "Buscar libro con titulo", "./data/iconos/libro.png");
-		agregarBoton(CATEGORIA_MEJOR, "Buscar libro con titulo", "./data/iconos/premio.png");
-		agregarBoton(AUTOR_VARIAS_CATEGORIAS, "Buscar libro con titulo", "./data/iconos/autor.png");
+
+		String path = Path.of("").toAbsolutePath().toString() + "/Taller6_Libreria/data/iconos/";
+
+		agregarBoton(BUSCAR_LIBRO, "Buscar libro con titulo", path + "libros.png");
+		agregarBoton(BUSCAR_LIBROS_AUTOR, "Buscar libros de un autor", path + "autor2.png");
+		agregarBoton(BUSCAR_CATEGORIA_AUTOR, "Buscar categorías autor", path + "contenido.png");
+		agregarBoton(CALIFICACION, "Calificacion", path + "estrella.png");
+		agregarBoton(CATEGORIA_MAS_LIBROS, "Categoria mas libros", path + "libreria.png");
+		agregarBoton(CONTAR_SIN_PORTADA, "Contar sin portada", path + "libro.png");
+		agregarBoton(CATEGORIA_MEJOR, "Categoria mejor", path + "premio.png");
+		agregarBoton(AUTOR_VARIAS_CATEGORIAS, "Autor varias categorias", path + "autor.png");
 	}
 
 	// ************************************************************************
@@ -87,8 +89,7 @@ public class PanelBotones extends JPanel implements ActionListener
 	 * @param texto   El texto que se mostrará en el "tooltip" (ayuda) del botón.
 	 * @param imagen  La ruta a la imagen que se usará como ícono del botón.
 	 */
-	private void agregarBoton(String comando, String texto, String imagen)
-	{
+	private void agregarBoton(String comando, String texto, String imagen) {
 		JButton boton = new JButton();
 		boton.setActionCommand(comando);
 		boton.setToolTipText(texto);
@@ -109,40 +110,24 @@ public class PanelBotones extends JPanel implements ActionListener
 	 * dependiendo del botón que haya sido presionado.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 
-		if (BUSCAR_LIBRO.equals(comando))
-		{
+		if (BUSCAR_LIBRO.equals(comando)) {
 			ventana.buscarLibro();
-		}
-		else if (BUSCAR_LIBROS_AUTOR.equals(comando))
-		{
+		} else if (BUSCAR_LIBROS_AUTOR.equals(comando)) {
 			ventana.buscarLibrosAutor();
-		}
-		else if (BUSCAR_CATEGORIA_AUTOR.equals(comando))
-		{
+		} else if (BUSCAR_CATEGORIA_AUTOR.equals(comando)) {
 			ventana.buscarCategoriasAutor();
-		}
-		else if (CALIFICACION.equals(comando))
-		{
+		} else if (CALIFICACION.equals(comando)) {
 			ventana.calcularCalificacionPromedio();
-		}
-		else if (CATEGORIA_MAS_LIBROS.equals(comando))
-		{
+		} else if (CATEGORIA_MAS_LIBROS.equals(comando)) {
 			ventana.categoriaConMasLibros();
-		}
-		else if (CONTAR_SIN_PORTADA.equals(comando))
-		{
+		} else if (CONTAR_SIN_PORTADA.equals(comando)) {
 			ventana.contarSinPortada();
-		}
-		else if (CATEGORIA_MEJOR.equals(comando))
-		{
+		} else if (CATEGORIA_MEJOR.equals(comando)) {
 			ventana.categoriaMejorCalificacion();
-		}
-		else if (AUTOR_VARIAS_CATEGORIAS.equals(comando))
-		{
+		} else if (AUTOR_VARIAS_CATEGORIAS.equals(comando)) {
 			ventana.hayAutorEnVariasCategorias();
 		}
 	}
