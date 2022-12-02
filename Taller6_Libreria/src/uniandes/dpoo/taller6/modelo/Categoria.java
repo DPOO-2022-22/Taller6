@@ -7,8 +7,7 @@ import java.util.ArrayList;
  * categor�a tiene un nombre �nico y adem�s sabe si es una categor�a a la que
  * pertenecen libros de ficci�n o no.
  */
-public class Categoria
-{
+public class Categoria {
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
@@ -32,8 +31,7 @@ public class Categoria
 	// Constructores
 	// ************************************************************************
 
-	public Categoria(String nombre, boolean ficcion)
-	{
+	public Categoria(String nombre, boolean ficcion) {
 		this.nombre = nombre;
 		this.ficcion = ficcion;
 		this.libros = new ArrayList<Libro>();
@@ -48,8 +46,7 @@ public class Categoria
 	 * 
 	 * @return Categoria
 	 */
-	public String darNombre()
-	{
+	public String darNombre() {
 		return nombre;
 	}
 
@@ -59,8 +56,7 @@ public class Categoria
 	 * 
 	 * @return ficcion
 	 */
-	public boolean esFiccion()
-	{
+	public boolean esFiccion() {
 		return ficcion;
 	}
 
@@ -69,8 +65,7 @@ public class Categoria
 	 * 
 	 * @return libros
 	 */
-	public ArrayList<Libro> darLibros()
-	{
+	public ArrayList<Libro> darLibros() {
 		return libros;
 	}
 
@@ -78,17 +73,17 @@ public class Categoria
 	// Otros métodos
 	// ************************************************************************
 
-	public void renombrar (String nuevoNombre) //funcion renombrar
+	public void renombrar(String nuevoNombre) // funcion renombrar
 	{
 		this.nombre = nuevoNombre;
-	} 
+	}
+
 	/**
 	 * Agrega un nuevo libro a la categor�a
 	 * 
 	 * @param nuevoLibro El nuevo libro que se va a agregar.
 	 */
-	public void agregarLibro(Libro nuevoLibro)
-	{
+	public void agregarLibro(Libro nuevoLibro) {
 		libros.add(nuevoLibro);
 	}
 
@@ -97,8 +92,7 @@ public class Categoria
 	 * 
 	 * @return Cantidad de libros
 	 */
-	public int contarLibrosEnCategoria()
-	{
+	public int contarLibrosEnCategoria() {
 		return libros.size();
 	}
 
@@ -107,12 +101,10 @@ public class Categoria
 	 * 
 	 * @return Calificaci�n promedio
 	 */
-	public double calificacionPromedio()
-	{
+	public double calificacionPromedio() {
 		double total = 0;
 
-		for (Libro libro : libros)
-		{
+		for (Libro libro : libros) {
 			total += libro.darCalificacion();
 		}
 
@@ -130,13 +122,11 @@ public class Categoria
 	 * @return Retorna true si hay al menos un libro cuyo autor es el autor buscado.
 	 *         Retorna false de lo contrario.
 	 */
-	public boolean hayLibroDeAutor(String nombreAutor)
-	{
+	public boolean hayLibroDeAutor(String nombreAutor) {
 		boolean hayLibro = false;
 
 		int i = 0;
-		while (i < libros.size() && !hayLibro)
-		{
+		while (i < libros.size() && !hayLibro) {
 			hayLibro = libros.get(i).darAutor().equals(nombreAutor);
 			i++;
 		}
@@ -156,16 +146,13 @@ public class Categoria
 	 * @return Una lista con todos los libros cuyo autor coincida con la cadena
 	 *         indicada
 	 */
-	public ArrayList<Libro> buscarLibrosDeAutor(String nombreAutor)
-	{
+	public ArrayList<Libro> buscarLibrosDeAutor(String nombreAutor) {
 		String cadena = nombreAutor.toLowerCase();
 
 		ArrayList<Libro> librosAutor = new ArrayList<Libro>();
 
-		for (Libro libro : libros)
-		{
-			if (libro.darAutor().toLowerCase().contains(cadena))
-			{
+		for (Libro libro : libros) {
+			if (libro.darAutor().toLowerCase().contains(cadena)) {
 				librosAutor.add(libro);
 			}
 		}
@@ -181,8 +168,7 @@ public class Categoria
 	 * Este método permite representar una categor�a como una cadena de caracteres
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return nombre;
 	}
 

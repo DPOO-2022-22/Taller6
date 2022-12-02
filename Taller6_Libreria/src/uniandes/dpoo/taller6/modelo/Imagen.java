@@ -1,10 +1,9 @@
 package uniandes.dpoo.taller6.modelo;
 
 /**
- * Esta clase agrupa la información de una imagen
+ * Esta clase agrupa la informaciï¿½n de una imagen
  */
-public class Imagen
-{
+public class Imagen {
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
@@ -29,14 +28,13 @@ public class Imagen
 	// ************************************************************************
 
 	/**
-	 * Construye una nueva imagen a partir de la información de los parámetros
+	 * Construye una nueva imagen a partir de la informaciï¿½n de los parï¿½metros
 	 * 
 	 * @param rutaArchivo Ruta en la que se encuentra el archivo con la imagen
 	 * @param ancho       Ancho en pixeles de la imagen
 	 * @param alto        Alto en pixeles de la imagen
 	 */
-	public Imagen(String rutaArchivo, int ancho, int alto)
-	{
+	public Imagen(String rutaArchivo, int ancho, int alto) {
 		this.rutaArchivo = rutaArchivo;
 		this.ancho = ancho;
 		this.alto = alto;
@@ -51,8 +49,7 @@ public class Imagen
 	 * 
 	 * @return rutaArchivo
 	 */
-	public String darRutaArchivo()
-	{
+	public String darRutaArchivo() {
 		return rutaArchivo;
 	}
 
@@ -61,8 +58,7 @@ public class Imagen
 	 * 
 	 * @return ancho
 	 */
-	public int darAncho()
-	{
+	public int darAncho() {
 		return ancho;
 	}
 
@@ -71,8 +67,7 @@ public class Imagen
 	 * 
 	 * @return alto
 	 */
-	public int darAlto()
-	{
+	public int darAlto() {
 		return alto;
 	}
 
