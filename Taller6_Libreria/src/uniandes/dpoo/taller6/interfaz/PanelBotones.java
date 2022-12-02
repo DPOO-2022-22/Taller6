@@ -39,6 +39,9 @@ public class PanelBotones extends JPanel implements ActionListener {
 
 	private final static String AUTOR_VARIAS_CATEGORIAS = "HayAutorEnVariasCategorias";
 
+	// Cambiar nombre
+	private final static String CAMBIAR_NOMBRE_CATEGORIA = "CambiarNombreCategoria";
+
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
@@ -73,6 +76,14 @@ public class PanelBotones extends JPanel implements ActionListener {
 		agregarBoton(CONTAR_SIN_PORTADA, "Contar sin portada", path + "libro.png");
 		agregarBoton(CATEGORIA_MEJOR, "Categoria mejor", path + "premio.png");
 		agregarBoton(AUTOR_VARIAS_CATEGORIAS, "Autor varias categorias", path + "autor.png");
+
+		// Cambiar nombre a categoria
+		JButton botonCambiarNombreCategoria = new JButton("Cambiar Nombre Categoria");
+		botonCambiarNombreCategoria.setToolTipText("Cambiar el nombre de la categoría");
+		botonCambiarNombreCategoria.setActionCommand(CAMBIAR_NOMBRE_CATEGORIA);
+		botonCambiarNombreCategoria.addActionListener(this);
+		this.add(botonCambiarNombreCategoria);
+
 	}
 
 	// ************************************************************************
@@ -90,12 +101,15 @@ public class PanelBotones extends JPanel implements ActionListener {
 	 * @param imagen  La ruta a la imagen que se usará como ícono del botón.
 	 */
 	private void agregarBoton(String comando, String texto, String imagen) {
+
 		JButton boton = new JButton();
+
 		boton.setActionCommand(comando);
 		boton.setToolTipText(texto);
 		boton.setIcon(new ImageIcon(imagen));
 		boton.addActionListener(this);
 		this.add(boton);
+
 	}
 
 	// ************************************************************************
@@ -112,6 +126,7 @@ public class PanelBotones extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
+		System.out.println(comando);
 
 		if (BUSCAR_LIBRO.equals(comando)) {
 			ventana.buscarLibro();
@@ -129,6 +144,11 @@ public class PanelBotones extends JPanel implements ActionListener {
 			ventana.categoriaMejorCalificacion();
 		} else if (AUTOR_VARIAS_CATEGORIAS.equals(comando)) {
 			ventana.hayAutorEnVariasCategorias();
+
+		} else if (CAMBIAR_NOMBRE_CATEGORIA.equals(comando)) {
+
+			ventana.renombrarCategoria();
+
 		}
 	}
 

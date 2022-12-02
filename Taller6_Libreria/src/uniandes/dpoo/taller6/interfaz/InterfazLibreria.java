@@ -184,6 +184,28 @@ public class InterfazLibreria extends JFrame {
 	}
 
 	/*
+	 * Cambiar Categoria
+	 */
+	public void renombrarCategoria() {
+		System.out.println("bien");
+
+		try {
+			String viejisimo = JOptionPane.showInputDialog(this, "Escriba el nombre de la categoria a renombrar",
+					"Categoria a renombrar");
+			String nuevisimo = JOptionPane.showInputDialog(this, "Escriba el nombre nuevo", "Renombrar");
+			libreria.renombrarCategoria(viejisimo, nuevisimo);
+			JOptionPane.showMessageDialog(this, "Se renombro correctamente la categoria", "Renombrar Exitoso",
+					JOptionPane.INFORMATION_MESSAGE);
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "No se pudo renombrar la categoria", "No se pudo renombrar",
+					JOptionPane.WARNING_MESSAGE);
+
+		}
+
+	}
+
+	/*
 	 * Metodo Categorias faltantes
 	 */
 	public void mostrarCategoriasFaltantes() {

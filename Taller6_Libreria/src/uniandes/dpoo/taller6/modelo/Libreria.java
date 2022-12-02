@@ -288,7 +288,6 @@ public class Libreria {
 			if (nuevoNombreCategoria.equals(nombreCategoria)) {
 				existeCategoria = true;
 			}
-			System.out.print(nombreCategoria);
 
 		}
 		if (existeCategoria == false && posicionCategoria != -1) {
@@ -512,20 +511,22 @@ public class Libreria {
 
 	public static void main(String[] args) throws IOException {
 
-		String path = Path.of("").toAbsolutePath().toString() + "/Taller6_Libreria/data/";
+		// String path = Path.of("").toAbsolutePath().toString() +
+		// "/Taller6_Libreria/data/";
 
-		String nombreArchivoCategorias = path + "categorias.csv";
-		String nombreArchivoLibros = path + "libreria.csv";
+		// String nombreArchivoCategorias = path + "categorias.csv";
+		// String nombreArchivoLibros = path + "libreria.csv";
 		// File a = new File(nombreArchivoCategorias);
 
-		Libreria libreria = new Libreria(nombreArchivoCategorias, nombreArchivoLibros);
+		// Libreria libreria = new Libreria(nombreArchivoCategorias,
+		// nombreArchivoLibros);
 
-		System.out.println(libreria.categorias.length);
-		try {
-			libreria.renombrarCategoria("Computing", "CS");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// System.out.println(libreria.categorias.length);
+		// try {
+		// // libreria.renombrarCategoria("Computing", "CS");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 
 	}
 
