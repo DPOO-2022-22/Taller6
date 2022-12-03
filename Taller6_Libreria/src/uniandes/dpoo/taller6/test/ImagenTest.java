@@ -17,15 +17,16 @@ public class ImagenTest
 	
 
 	@BeforeAll
-	public static void setUp()
+	public void setUp()
 	{
 		// Inicialice el atributo de imagen
+		imagen = new Imagen();
 	}
 	
 	@AfterAll
 	public static void tearDown()
 	{
-		// Implemente el método para que al ser llamado, se asegure de dejar el atributo imagen igual que en el estado inicial del setUp.
+		// Implemente el mï¿½todo para que al ser llamado, se asegure de dejar el atributo imagen igual que en el estado inicial del setUp.
 	}
 	
 	@Test
