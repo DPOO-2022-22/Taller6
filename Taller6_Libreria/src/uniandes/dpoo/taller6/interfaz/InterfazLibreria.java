@@ -26,7 +26,7 @@ import uniandes.dpoo.taller6.modelo.Libreria;
 import uniandes.dpoo.taller6.modelo.Libro;
 
 /**
- * Esta clase representa a la ventana principal de la aplicación
+ * Esta clase representa a la ventana principal de la aplicaciÃ³n
  */
 @SuppressWarnings("serial")
 public class InterfazLibreria extends JFrame {
@@ -36,7 +36,8 @@ public class InterfazLibreria extends JFrame {
 	// ************************************************************************
 
 	/**
-	 * Esta es la librería que se muestra durante la ejecución de la aplicación
+	 * Esta es la librerÃ­a que se muestra durante la ejecuciÃ³n de la apl
+	 * caciÃ³n
 	 */
 	private Libreria libreria;
 
@@ -45,30 +46,30 @@ public class InterfazLibreria extends JFrame {
 	// ************************************************************************
 
 	/**
-	 * Este componente corresponde al menú completo que se encuentra en la parte
+	 * Este componente corresponde al menÃº completo que se encuentra en la parte
 	 * superior de la ventana
 	 */
 	private JMenuBar barraMenu;
 
 	/**
-	 * Este componente corresponde al menú archivo
+	 * Este componente corresponde al menÃº archivo
 	 */
 	private JMenu menuArchivo;
 
 	/**
-	 * Este componente corresponde a la opción para cargar los archivos de una
-	 * librería
+	 * Este componente corresponde a la opciÃ³n para cargar los archivos de una
+	 * librerÃ­a
 	 */
 	private JMenuItem menuAbrir;
 
 	/**
-	 * Este componente corresponde a la opción para salir de la aplicación
+	 * Este componente corresponde a la opciÃ³n para salir de la aplicaciÃ³n
 	 */
 	private JMenuItem menuSalir;
 
 	/**
-	 * Este componente corresponde al panel donde se muestran las categorías
-	 * disponibles en la aplicación
+	 * Este componente corresponde al panel donde se muestran las categorÃ­as
+	 * disponibles en la aplicaciÃ³n
 	 */
 	private PanelCategorias panelCategorias;
 
@@ -78,7 +79,7 @@ public class InterfazLibreria extends JFrame {
 	private PanelLibros panelLibros;
 
 	/**
-	 * Este componente corresponde al panel donde se muestra la información de un
+	 * Este componente corresponde al panel donde se muestra la informaciÃ³n de un
 	 * libro
 	 */
 	private PanelLibro panelLibro;
@@ -94,8 +95,8 @@ public class InterfazLibreria extends JFrame {
 	// ************************************************************************
 
 	/**
-	 * Construye la ventana principal para la aplicación, pero no carga la
-	 * información de ninguna librería.
+	 * Construye la ventana principal para la aplicaciÃ³n, pero no carga la
+	 * informaciÃ³n de ninguna librerÃ­a.
 	 */
 	public InterfazLibreria() {
 		barraMenu = new JMenuBar();
@@ -144,8 +145,8 @@ public class InterfazLibreria extends JFrame {
 		add(panelAbajo, BorderLayout.SOUTH);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Librería");
-		setSize(1000, 700);
+		setTitle("LibrerÃ­a");
+		setSize(1200, 700);
 		setVisible(true);
 
 		// Cargar archivos
@@ -158,17 +159,19 @@ public class InterfazLibreria extends JFrame {
 	}
 
 	// ************************************************************************
-	// Métodos
+	// MÃ©todos
 	// ************************************************************************
 
 	/**
-	 * Carga la información de una librería a partir de los archivos datos,
-	 * construye un objeto Librería con esa información y lo deja en el atributo
+	 * Carga la informaciÃ³n de una librerÃ­a a partir de los archivos datos,
+	 * construye un objeto LibrerÃ­a con esa informaciÃ³n y lo deja en el atr
+	 * buto
 	 * llamado 'libreria'
 	 * 
-	 * @param archivo_categorias El archivo que tiene la información de las
-	 *                           categorías que se usarán para los libros
-	 * @param archivo_libros     El archivo que tiene la información de los libros
+	 * @param archivo_categorias El archivo que tiene la informaciÃ³n de las
+	 *                           categorÃ­as que se usarÃ¡n para los libros
+	 * @param archivo_libros     El archivo que tiene la informaciÃ³n de los l
+	 *                           bros
 	 */
 	public void cargarArchivos(File archivo_categorias, File archivo_libros) {
 		try {
@@ -187,10 +190,9 @@ public class InterfazLibreria extends JFrame {
 	 * Cambiar Categoria
 	 */
 	public void renombrarCategoria() {
-		System.out.println("bien");
 
 		try {
-			String viejo= JOptionPane.showInputDialog(this, "Escriba el nombre de la categoria a renombrar",
+			String viejo = JOptionPane.showInputDialog(this, "Escriba el nombre de la categoria a renombrar",
 					"Categoria a renombrar");
 			String nuevo = JOptionPane.showInputDialog(this, "Escriba el nombre nuevo", "Renombrar");
 			libreria.renombrarCategoria(viejo, nuevo);
@@ -205,14 +207,32 @@ public class InterfazLibreria extends JFrame {
 
 	}
 
-	// metodo borrar libros 
+	// metodo borrar libros
 
-	public void borrarLibro(){
+	public void borrarLibros(String autoresString) {
 
+		if (autoresString.equals("Autores")) {
 
+			JOptionPane.showMessageDialog(this, "Digite Autor(es) a eliminar", "Error",
+					JOptionPane.ERROR_MESSAGE);
 
+		} else {
+
+			try {
+				libreria.borrarLibros(autoresString);
+
+				JOptionPane.showMessageDialog(this,
+						"Se eliminaron los libros de " + autoresString + "\nActualice la categoria seleccionada",
+						"Borrar Libros Exitoso",
+						JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Error",
+						JOptionPane.ERROR_MESSAGE);
+			}
+
+		}
 	}
-
 
 	/*
 	 * Metodo Categorias faltantes
@@ -321,7 +341,7 @@ public class InterfazLibreria extends JFrame {
 	}
 
 	/**
-	 * Le informa al usuario la calificación promedio de los libros de la 
+	 * Le informa al usuario la calificación promedio de los libros de la
 	 * ibrería,
 	 * con base en la información disponible en cada uno de los libros.
 	 */
@@ -343,7 +363,7 @@ public class InterfazLibreria extends JFrame {
 	}
 
 	/**
-	 * Le informa al usuario la cantidad de libros en la librería para los cuales 
+	 * Le informa al usuario la cantidad de libros en la librería para los cuales
 	 * o
 	 * se tiene una portada.
 	 */

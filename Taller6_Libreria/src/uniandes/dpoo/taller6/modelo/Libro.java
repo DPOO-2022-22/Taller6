@@ -1,5 +1,7 @@
 package uniandes.dpoo.taller6.modelo;
 
+import java.nio.file.Path;
+
 /**
  * Esta clase agrupa la informaci�n sobre un libro disponible en la librer�a
  */
@@ -114,9 +116,12 @@ public class Libro {
 	 *         archivo "./imagenes/missing.png"
 	 */
 	public Imagen darPortada() {
+
 		Imagen laPortada = portada;
+
 		if (laPortada == null) {
-			laPortada = new Imagen("./imagenes/missing.png", 85, 85);
+			String path = Path.of("").toAbsolutePath().toString() + "/Taller6_Libreria/data/";
+			laPortada = new Imagen(path + "imagenes/missing.png", 85, 85);
 		}
 
 		return laPortada;

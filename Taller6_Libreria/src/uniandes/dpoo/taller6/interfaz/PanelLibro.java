@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.nio.file.Path;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,8 +20,7 @@ import uniandes.dpoo.taller6.modelo.Libro;
  * Panel donde se muestran la información de un libro
  */
 @SuppressWarnings("serial")
-public class PanelLibro extends JPanel
-{
+public class PanelLibro extends JPanel {
 	// ************************************************************************
 	// Atributos
 	// ************************************************************************
@@ -72,8 +72,7 @@ public class PanelLibro extends JPanel
 	/**
 	 * Construye un nuevo panel para mostrar la información de un libro
 	 */
-	public PanelLibro()
-	{
+	public PanelLibro() {
 		setBorder(new TitledBorder("Libro"));
 
 		txtTitulo = new JTextField(" ");
@@ -143,21 +142,19 @@ public class PanelLibro extends JPanel
 	 * 
 	 * @param nuevolibro El nuevo libro para el cual se debe mostrar la información
 	 */
-	public void actualizarLibro(Libro nuevolibro)
-	{
+	public void actualizarLibro(Libro nuevolibro) {
 		libro = nuevolibro;
-		if (libro != null)
-		{
+		if (libro != null) {
 			txtTitulo.setText(nuevolibro.darTitulo());
 			txtAutor.setText(nuevolibro.darAutor());
 			txtCategoria.setText(nuevolibro.darCategoria().darNombre());
 			txtCalificacion.setText("" + nuevolibro.darCalificacion());
 			Imagen portada = nuevolibro.darPortada();
-			labPortada.setIcon(new ImageIcon("./data/" + portada.darRutaArchivo()));
+
+			String path = Path.of("").toAbsolutePath().toString() + "/Taller6_Libreria/data/";
+			labPortada.setIcon(new ImageIcon(path + portada.darRutaArchivo()));
 			labDetallesImagen.setText(portada.darRutaArchivo() + ": " + portada.darAncho() + "x" + portada.darAlto());
-		}
-		else
-		{
+		} else {
 			txtTitulo.setText("");
 			txtAutor.setText("");
 			txtCategoria.setText("");

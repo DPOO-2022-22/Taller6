@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -53,6 +54,11 @@ public class PanelBotones extends JPanel implements ActionListener {
 	 */
 	private InterfazLibreria ventana;
 
+	/*
+	 * TextField
+	 */
+	private JTextField textAutoresBorrar;
+
 	// ************************************************************************
 	// Constructores
 	// ************************************************************************
@@ -86,12 +92,17 @@ public class PanelBotones extends JPanel implements ActionListener {
 		botonCambiarNombreCategoria.addActionListener(this);
 		this.add(botonCambiarNombreCategoria);
 
-		//borrar libros
+		// Text field
+		textAutoresBorrar = new JTextField("Autores");
+		this.add(textAutoresBorrar);
+
+		// borrar libros
 		JButton botonBorrarLibro = new JButton("Borrar libro");
 		botonBorrarLibro.setToolTipText("Eliminar libros");
 		botonBorrarLibro.setActionCommand(BORRAR_LIBRO);
 		botonBorrarLibro.addActionListener(this);
 		this.add(botonBorrarLibro);
+
 	}
 
 	// ************************************************************************
@@ -134,7 +145,6 @@ public class PanelBotones extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
-		System.out.println(comando);
 
 		if (BUSCAR_LIBRO.equals(comando)) {
 			ventana.buscarLibro();
@@ -157,9 +167,9 @@ public class PanelBotones extends JPanel implements ActionListener {
 
 			ventana.renombrarCategoria();
 
-		} else if (BORRAR_LIBRO.equals(comando)){
-
-			ventana.borrarLibro();
+		} else if (BORRAR_LIBRO.equals(comando)) {
+			String autores = textAutoresBorrar.getText();
+			ventana.borrarLibros(autores);
 		}
 	}
 

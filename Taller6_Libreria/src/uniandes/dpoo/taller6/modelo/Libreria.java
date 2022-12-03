@@ -298,6 +298,65 @@ public class Libreria {
 
 	}
 
+	/*
+	 * Borrar libros
+	 */
+	public void borrarLibros(String autoresString) throws Exception {
+
+		boolean valido = true;
+
+		String[] autores = autoresString.split(",");
+
+		for (int i = 0; i < autores.length; i++) {
+
+			String autor = autores[i].trim();
+			ArrayList<Libro> librosAutor = buscarLibrosAutor(autor);
+
+			if (librosAutor.size() <= 0) {
+				valido = false;
+			}
+		}
+
+		if (valido) {
+
+			for (int i = 0; i < autores.length; i++) {
+
+				String autor = autores[i].trim();
+
+				ArrayList<Libro> librosAutor = buscarLibrosAutor(autor);
+
+				for (int j = 0; j < librosAutor.size(); j++) {
+
+					Libro libro = librosAutor.get(j);
+
+					catalogo.remove(libro);
+
+					// Eliminar de categorias
+					for (int k = 0; k < categorias.length; k++) {
+						Categoria categoria = categorias[k];
+						ArrayList<Libro> libros = categoria.darLibros();
+
+						boolean contiene = libros.contains(libro);
+
+						if (contiene) {
+
+							libros.remove(libro);
+							contiene = libros.contains(libro);
+
+						}
+					}
+
+				}
+
+				librosAutor = buscarLibrosAutor(autor);
+
+			}
+
+		} else {
+			throw new Exception("Al menos uno de los autores no tiene libros en el catalogo");
+		}
+	}
+
 	/**
 	 * Retorna una lista con los libros que pertenecen a la categoria
 	 * 
