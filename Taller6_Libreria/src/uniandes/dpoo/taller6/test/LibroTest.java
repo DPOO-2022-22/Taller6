@@ -23,12 +23,13 @@ public class LibroTest
 	public static void setUp()
 	{
 		// Inicialice el atributo de libro
+		libro = new Libro();
 	}
 	
 	@AfterAll
 	public static void tearDown()
 	{
-		// Implemente el método para que al ser llamado, se asegure de dejar el atributo libro igual que en el estado inicial del setUp.
+		// Implemente el mï¿½todo para que al ser llamado, se asegure de dejar el atributo libro igual que en el estado inicial del setUp.
 	}
 	
 	@Test
